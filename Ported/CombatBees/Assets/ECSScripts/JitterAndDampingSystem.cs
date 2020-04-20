@@ -35,7 +35,6 @@ public class JitterAndDampingSystem : JobComponentSystem
         {
             var velocities = chunk.GetNativeArray(VelocityType).Reinterpret<float3>();
             var randoms = chunk.GetNativeArray(RandomizerType).Reinterpret<Random>();
-            
             for (int i = 0; i < chunk.Count; i++)
             {
                 var random = randoms[i];
