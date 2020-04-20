@@ -1,12 +1,42 @@
-﻿using Unity.Burst;
+﻿#define NEW
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-public class RemoveDeadSystem : JobComponentSystem
+public class RemoveDeadSystem
+#if NEW
+    : SystemBase
+#else
+    : JobComponentSystem
+#endif
 {
+    private BeginSimulationEntityCommandBufferSystem mCommandBufferSystem;
+
+    protected override void OnCreate()
+    {
+        mCommandBufferSystem = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
+    }
+
+#if NEW
+    protected override void OnUpdate()
+    {
+        var ecb = mCommandBufferSystem.CreateCommandBuffer().ToConcurrent();
+        Entities
+            .WithAll<DeathTag>()
+            .ForEach((Entity e, int entityInQueryIndex) =>
+            {
+                ecb.DestroyEntity(entityInQueryIndex, e);
+            })
+            .WithName("RemoveDead")
+            .ScheduleParallel();
+
+        mCommandBufferSystem.AddJobHandleForProducer(Dependency);
+    }
+
+#else
     [BurstCompile]
     public struct RemoveDeadJob : IJobForEachWithEntity<DeathTag>
     {
@@ -18,12 +48,6 @@ public class RemoveDeadSystem : JobComponentSystem
         }
     }
 
-    private BeginSimulationEntityCommandBufferSystem mCommandBufferSystem;
-
-    protected override void OnCreate()
-    {
-        mCommandBufferSystem = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
-    }
 
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
@@ -35,4 +59,5 @@ public class RemoveDeadSystem : JobComponentSystem
 
         return job;
     }
+#endif
 }

@@ -16,7 +16,8 @@ public class BeeSpawningSystem : ComponentSystem
                                                       typeof(Scale), typeof(LocalToWorld),
                                                       typeof(RenderMesh), typeof(BeeTag),
                                                       typeof(Velocity), typeof(Team),
-                                                      typeof(Randomizer));
+                                                      typeof(Randomizer),
+                                                      typeof(RenderBounds));
     }
 
     protected override void OnUpdate()

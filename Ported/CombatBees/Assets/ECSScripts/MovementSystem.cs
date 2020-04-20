@@ -1,4 +1,5 @@
-﻿using Unity.Jobs;
+﻿#define NEW
+using Unity.Jobs;
 using Unity.Entities;
 using Unity.Burst;
 using Unity.Transforms;
@@ -6,8 +7,26 @@ using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class MovementSystem : JobComponentSystem
+public class MovementSystem
+#if NEW
+    : SystemBase
+#else
+    : JobComponentSystem
+#endif
 {
+#if NEW
+    protected override void OnUpdate()
+    {
+        var dt = Time.DeltaTime;
+        Entities
+            .ForEach((ref Translation pos, ref Velocity vel) =>
+            {
+                pos.Value += vel.Value * dt;
+            })
+            .WithName("Move")
+            .ScheduleParallel();
+    }
+#else
     [BurstCompile]
     public struct MovementJob : IJobForEach<Translation, Velocity>
     {
@@ -25,4 +44,6 @@ public class MovementSystem : JobComponentSystem
         job.DeltaTime = Time.DeltaTime;
         return job.Schedule(this, inputDeps);
     }
+#endif
+
 }

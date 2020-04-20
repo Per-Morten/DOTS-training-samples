@@ -120,6 +120,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -284,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0045ee4ef2e542a4ca7a5e9fa2b05493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beeMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  beeMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 3}
   beeMaterial: {fileID: 2100000, guid: 618ad2bcfdace9e4aae0954675106cd3, type: 2}
   teamColors:
   - {r: 0.30882353, g: 0.4279919, b: 1, a: 1}
@@ -419,6 +421,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -494,7 +497,7 @@ MonoBehaviour:
   BeeMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   FirstTeamMaterial: {fileID: 2100000, guid: 7a0f59ad663d2dc44bcaa5252dd4b30b, type: 2}
   SecondTeamMaterial: {fileID: 2100000, guid: b7b26b1cb77488c4fba794c9ebd95550, type: 2}
-  BeeCount: 50000
+  BeeCount: 100000
   Aggression: 1
   TeamAttraction: 5
   TeamRepulsion: 4
