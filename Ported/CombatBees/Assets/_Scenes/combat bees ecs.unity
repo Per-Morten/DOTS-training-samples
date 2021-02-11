@@ -222,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &129398391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0045ee4ef2e542a4ca7a5e9fa2b05493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beeMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 3}
+  beeMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   beeMaterial: {fileID: 2100000, guid: 618ad2bcfdace9e4aae0954675106cd3, type: 2}
   teamColors:
   - {r: 0.30882353, g: 0.4279919, b: 1, a: 1}
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcdc92ee6601acc43991b3ced5712839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 3}
+  particleMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   particleMaterial: {fileID: 2100000, guid: 59a317ccb1c95e44bbb3432c7b9e5b36, type: 2}
   speedStretch: 0.25
 --- !u!4 &563381094
@@ -491,21 +491,35 @@ MonoBehaviour:
     x: 100
     y: 20
     z: 30
-  Gravity: 0
+  Gravity: 5
   FlightJitter: 200
   Damping: 0.1
   BeeMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   FirstTeamMaterial: {fileID: 2100000, guid: 7a0f59ad663d2dc44bcaa5252dd4b30b, type: 2}
   SecondTeamMaterial: {fileID: 2100000, guid: b7b26b1cb77488c4fba794c9ebd95550, type: 2}
-  BeeCount: 100000
-  Aggression: 1
+  BeeCount: 1000
+  Aggression: 0.5
   TeamAttraction: 5
   TeamRepulsion: 4
   ChaseForce: 250
   AttackForce: 500
   AttackDistance: 4
   HitDistance: 2
-  SecondsToDeathStartValue: 0
+  SecondsToDeathStartValue: 1
+  ResourceMesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  ResourceMaterial: {fileID: 2100000, guid: 369b682ef7790ad4eb8caef908378e07, type: 2}
+  ResourceSize: 1
+  SnapStiffness: 2
+  CarryStiffness: 15
+  SpawnRate: 10
+  BeesPerResource: 8
+  StartResourceCount: 5
+  YellowTeamGoPrefab: {fileID: 3555902495288884470, guid: fbf4db42997ab084797be2b25967d390,
+    type: 3}
+  PurpleTeamGoPrefab: {fileID: 256691814157408720, guid: 1aa01cd3c9a6a98409f82239b5e8c97b,
+    type: 3}
+  ResourceGoPrefab: {fileID: 6614431472798935564, guid: 697464a4c4a6af1438d55ad1654cdbe4,
+    type: 3}
 --- !u!4 &670510487
 Transform:
   m_ObjectHideFlags: 0
@@ -596,6 +610,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &883832385
@@ -708,7 +723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf95afc5c6348c4aa555a2d3c64090b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 669731901}
+  text: {fileID: 0}
 --- !u!4 &1496960979
 Transform:
   m_ObjectHideFlags: 0
@@ -921,6 +936,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1720388219
@@ -977,6 +993,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1885083421
 Canvas:
   m_ObjectHideFlags: 0
